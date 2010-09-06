@@ -155,7 +155,17 @@ var board;
 function initialize() {
   board = new Board({ lines : 32, columns : 32, left : 10, top : 10, squareSize : 10, canvasId : "board_canvas" });
   board.draw();
-  board.fillInitialCells([[5, 5], [5, 6], [5, 7]]);
+}
+
+function addCell() {
+  var pairs = document.getElementById("add_cell").value.split(";");
+  var cells = pairs.map(function(pair) { return pair.split(",").map(function(str) { return parseInt(str.trim()); }); });
+
+  board.fillInitialCells(cells);
+}
+
+window.load = function() {
+  initialize();
 }
 
 function refresh() {
